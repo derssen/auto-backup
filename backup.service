@@ -1,0 +1,12 @@
+[Unit]
+Description=Service for backup files and folders
+
+[Service]
+User=backup
+Group=backup
+Type=simple
+ExecStart=/usr/local/bin/backup.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
