@@ -1,12 +1,13 @@
 [Unit]
-Description=Service for backup files and folders
+Description=Service for backuping files and folders
 
 [Service]
 User=root
 Group=root
 Type=simple
 ExecStart=/usr/local/bin/backup.sh
-Restart=always
+StandardOutput=append:/var/log/backup/output.log
+StandardError=append:/var/log/backup/errors.log
 
 [Install]
 WantedBy=multi-user.target

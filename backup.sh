@@ -10,6 +10,8 @@
 # $SrcFiles - Source, file or directory to compress.
 # $PathToStore - Directory where the archive will be placed
 
+echo "-=====================================-"
+echo $(date)
 echo "Starting script"
 
 SrcFiles=$(ls /home/clouduser/*.txt)
@@ -18,5 +20,6 @@ TimeStamp=$(date +'%d%m%Y')
 ArchName='archive_'$TimeStamp'.tar'
 
 tar -cf $PathToStore$ArchName $SrcFiles
-echo "Files:"$SrcFiles
-echo "Created archive:"$ArchName
+echo "Files:" $SrcFiles
+echo "Created archive:" $ArchName
+echo "-=====================================-"
