@@ -2,8 +2,8 @@
 Description=Service for backup files and folders
 
 [Service]
-User=backup
-Group=backup
+User=root
+Group=root
 Type=simple
 ExecStart=/usr/local/bin/backup.sh
 Restart=always

@@ -12,7 +12,7 @@
 
 echo "Starting script"
 
-SrcFiles=$(*.txt)
+SrcFiles=$(ls /home/clouduser/*.txt)
 PathToStore='/home/backup/archives/'
 TimeStamp=$(date +'%d%m%Y')
 ArchName='archive_'$TimeStamp'.tar'

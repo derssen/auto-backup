@@ -20,16 +20,17 @@ fi
 chmod +x *.sh
 echo "Making scripts executable."
 
+
 # Copy the service file to systemd path
 if sudo cp "$SERVICE_FILE" "$SYSTEMD_PATH" && \
    sudo cp "$TIMER_FILE" "$SYSTEMD_PATH" && \
    sudo cp *.sh "$SCRIPT_PATH"; then
     echo "Copied $SERVICE_FILE and $TIMER_FILE to $SYSTEMD_PATH"
     echo "Copied scripts to $SCRIPT_PATH"
-    sudo systemctl enable backup.sh
-    sudo systemctl enable backup.timer
-    sudo systemctl start backup.sh
-    sudo systemctl start backup.timer
+    sudo systemctl enable $SERVICE_FILE
+    sudo systemctl enable $TIMER_FILE
+    sudo systemctl start $SERVICE_FILE
+    sudo systemctl start $TIMER_FILE
     echo "Systemd service and timer enabled and started."
 else
     echo "Error copying files. Please check permissions or file paths."
