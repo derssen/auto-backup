@@ -19,7 +19,8 @@ source variables
 TimeStamp=$(date +'%d%m%Y')
 ArchName='archive_'$TimeStamp'.tar'
 
-tar -cf $PathToStore$ArchName $SrcFiles
-echo "Files:" $SrcFiles
+tar -cf "${PathToStore}${ArchName}" -C "${SrcDir}" .
+echo "Files in archive:"
+tar -tf "${PathToStore}${ArchName}"
 echo "Created archive:" $ArchName
 echo "-=====================================-"

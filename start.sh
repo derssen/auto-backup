@@ -45,8 +45,8 @@ while true; do
 done
 
 # Replacing variable values ​​in file
-sed -i "s/^SrcFiles=.*/SrcFiles=\"$SrcFiles\"/" variables
-sed -i "s/^PathToStore=.*/PathToStore=\"$PathToStore\"/" variables
+sed -i "s|^SrcFiles=.*|SrcFiles=\"$SrcFiles\"|" variables
+sed -i "s|^PathToStore=.*|PathToStore=\"$PathToStore\"|" variables
 
 
 # Check if the user exists
@@ -59,14 +59,15 @@ else
 fi
 
 # Creating log-folders
-mkdir /var/log/backup
+sudo mkdir /var/log/backup
 echo "Created folder for logs"
 
 # Copy the service file to systemd path
 if chmod +x *.sh && \
    sudo cp "$SERVICE_FILE" "$SYSTEMD_PATH" && \
    sudo cp "$TIMER_FILE" "$SYSTEMD_PATH" && \
-   sudo cp *.sh "$SCRIPT_PATH"; then
+   sudo cp *.sh "$SCRIPT_PATH" && \
+   sudo cp variables "$SCRIPT_PATH"; then
     echo "Files made executable."
     echo "Copied $SERVICE_FILE and $TIMER_FILE to $SYSTEMD_PATH"
     echo "Copied scripts to $SCRIPT_PATH"
