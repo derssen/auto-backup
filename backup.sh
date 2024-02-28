@@ -14,8 +14,8 @@ echo "-=====================================-"
 echo $(date)
 echo "Starting script"
 
-SrcFiles=$(ls /home/clouduser/*.txt)
-PathToStore='/home/backup/archives/'
+source variables
+
 TimeStamp=$(date +'%d%m%Y')
 ArchName='archive_'$TimeStamp'.tar'
 
