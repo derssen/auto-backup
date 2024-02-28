@@ -7,7 +7,7 @@
 # $ArchName - Directory where the previous archives will be placed.
 # $TimeStamp - Timestamp format.
 #              [ default: "[%Y.%m.%d - %H:%M:%S]" ]
-# $SrcFiles - Source, file or directory to compress.
+# $SrcDir - Source, file or directory to compress.
 # $PathToStore - Directory where the archive will be placed
 
 echo "-=====================================-"

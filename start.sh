@@ -11,9 +11,9 @@ SCRIPT_PATH="/usr/local/bin/"
 
 echo 'Enter directory you want to copy:'
 while true; do
-    read -p '(For example - /home/user/) >>> ' SrcFiles
+    read -p '(For example - /home/user/) >>> ' SrcDir
 
-    if [ -d "$SrcFiles" ]; then
+    if [ -d "$SrcDir" ]; then
         echo 'OK!'
         break  # Exit the loop if the directory exists
     else
@@ -45,7 +45,7 @@ while true; do
 done
 
 # Replacing variable values ​​in file
-sed -i "s|^SrcFiles=.*|SrcFiles=\"$SrcFiles\"|" variables
+sed -i "s|^SrcDir=.*|SrcDir=\"$SrcDir\"|" variables
 sed -i "s|^PathToStore=.*|PathToStore=\"$PathToStore\"|" variables
 
 
@@ -54,27 +54,27 @@ if id "$TARGET_USER" &>/dev/null; then
     echo "User $TARGET_USER already exists."
 else
     # Creating a user for operations and file storage
-    sudo adduser "$TARGET_USER"
+    adduser "$TARGET_USER"
     echo "User $TARGET_USER created."
 fi
 
 # Creating log-folders
-sudo mkdir /var/log/backup
+mkdir /var/log/backup
 echo "Created folder for logs"
 
 # Copy the service file to systemd path
 if chmod +x *.sh && \
-   sudo cp "$SERVICE_FILE" "$SYSTEMD_PATH" && \
-   sudo cp "$TIMER_FILE" "$SYSTEMD_PATH" && \
-   sudo cp *.sh "$SCRIPT_PATH" && \
-   sudo cp variables "$SCRIPT_PATH"; then
+   cp "$SERVICE_FILE" "$SYSTEMD_PATH" && \
+   cp "$TIMER_FILE" "$SYSTEMD_PATH" && \
+   cp *.sh "$SCRIPT_PATH" && \
+   cp variables "$SCRIPT_PATH"; then
     echo "Files made executable."
     echo "Copied $SERVICE_FILE and $TIMER_FILE to $SYSTEMD_PATH"
     echo "Copied scripts to $SCRIPT_PATH"
-    sudo systemctl enable $SERVICE_FILE
-    sudo systemctl enable $TIMER_FILE
-    sudo systemctl start $SERVICE_FILE
-    sudo systemctl start $TIMER_FILE
+    systemctl enable $SERVICE_FILE
+    systemctl enable $TIMER_FILE
+    systemctl start $SERVICE_FILE
+    systemctl start $TIMER_FILE
     # Check if the services started successfully
     if [ $? -eq 0 ]; then
         echo "Services enabled and started successfully."
